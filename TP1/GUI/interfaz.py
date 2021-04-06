@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication,QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
 from GeneracionNroRandom.generadores import controlGeneradores
 
 
@@ -8,12 +8,11 @@ from GeneracionNroRandom.generadores import controlGeneradores
 class Generador_Numeros(QMainWindow):
     def __init__(self):
         super() . __init__()
-        controlador=None
-        num_orden=[]
-        Semilla=[]
-        num_random=[]
+
+        controlador = None
+        numeros_aleatorios = []
         uic.loadUi("ventanaGenerarNumeros.ui",self)
-        self.controlador= controlGeneradores()
+        self.controlador = controlGeneradores()
 
 
         self.cmb_MetodoAleatorio.currentIndexChanged.connect(self.accion_seleccionar_metodo)
@@ -29,7 +28,7 @@ class Generador_Numeros(QMainWindow):
         self.txt_intervalos.clear()
 
     def accion_generar_proximo_numero(self):
-        return 0
+       return 0
 
     def accion_seleccionar_metodo(self):
 
@@ -63,7 +62,7 @@ class Generador_Numeros(QMainWindow):
 
         # Obtengo metodo
         id_metodo = self.cmb_MetodoAleatorio.itemData(self.cmb_MetodoAleatorio.currentIndex())
-        s = None
+        semilla = None
         a = None
         c = None
         m = None
@@ -73,20 +72,38 @@ class Generador_Numeros(QMainWindow):
             return
         # Genero numeros aleatorios dependiendo del metodo seleccionado
         if id_metodo == 0:
-            self.nro_orden,self.Semilla, self.num_random = self.controlador.generarNrosAleatoriosMetodoCongruencialMixto(
-                s, m, a, c, cantidad_numeros)
+            self.numeros_aleatorios = self.controlador.generarNrosAleatoriosMetodoCongruencialMixto(
+                cantidad_numeros, semilla, a, c, m)
         elif id_metodo == 1:
-            self.nro_orden, self.Semilla, self.num_random = self.controlador.generarNrosAleatoriosMetodoCongruencialLineal(
-                s, m, a, cantidad_numeros)
+            self.numeros_aleatorios = self.controlador.generarNrosAleatoriosMetodoCongruencialLineal(
+                cantidad_numeros, semilla, a, m)
 
         elif id_metodo == 2:
-            self.num_random = self.controlador.generarMetodoProvistoPorElLenguaje(cantidad_numeros)
+            self.numeros_aleatorios = self.controlador.generarMetodoProvistoPorElLenguaje(cantidad_numeros)
 
         # Cargo tabla
-        self.cargar_tabla_numeros_aleatorios(self)
+        self.cargar_tabla_numeros_aleatorios()
 
     def cargar_tabla_numeros_aleatorios(self):
-        return 0
+        self.dgv_numerosAleatorios.setRowCount(len(self.numeros_aleatorios))
+        index = 0
+        for n in self.numeros_aleatorios:
+
+            # Obtengo datos en formato conveniente
+            nro_orden = str(n.get("nro_orden"))
+            semilla = n.get("semilla")
+            if semilla is not None:
+                if int(semilla) == semilla:
+                    semilla = int(semilla)
+                semilla = str(semilla).replace(".", ",")
+            else:
+                semilla = ""
+            aleatorio_decimal = str(n.get("aleatorio_decimal")).replace(".", ",")
+            # Agrego fila a tabla
+            self.dgv_numerosAleatorios.setItem(index, 0, QTableWidgetItem(nro_orden))
+            self.dgv_numerosAleatorios.setItem(index, 1, QTableWidgetItem(semilla))
+            self.dgv_numerosAleatorios.setItem(index, 2, QTableWidgetItem(aleatorio_decimal))
+            index += 1
 
 
 
@@ -99,7 +116,7 @@ class Generador_Numeros(QMainWindow):
 
        # Preparo tabla de numeros generados
         self.dgv_numerosAleatorios.setColumnCount(3)
-        self.dgv_numerosAleatorios.setHorizontalHeaderLabels(["Iteracion", "Semilla", "Num random"])
+        self.dgv_numerosAleatorios.setHorizontalHeaderLabels(["N° de orden", "Semilla", "Número aleatorio"])
 
     def limpiar_interfaz_generar_numeros(self):
         # Limpio txts

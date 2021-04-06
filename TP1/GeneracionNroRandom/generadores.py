@@ -1,72 +1,71 @@
-import random
+from random import uniform
 import numpy as np
 
 class controlGeneradores():
 
     def generarMetodoProvistoPorElLenguaje(self,cantidad):
+        # Convierto tipos de datos
+        cantidad = int(cantidad)
 
-        nros = []
+        # Inicializo datos
+        numeros_generados = []
 
+        # Genero lista de numeros aleatorios
         for i in range(0, cantidad):
-            x = round(random.random(), 4)
-            nros.append(x)
+            aleatorio_decimal = round(uniform(0, 1), 4)
+            numeros_generados.append({
+                "nro_orden": i + 1,
+                "aleatorio_decimal": aleatorio_decimal
+            })
 
-        return nros
+        return numeros_generados
 
 
     # segun video (ver minuto 10:30)
-    def generarNrosAleatoriosMetodoCongruencialLineal(self,s, M, A, cantidad):
-        n=[]
-        R=[]
-        X=[]
-        i = 0
-        while i < cantidad:
-            n.append(i)
+    def generarNrosAleatoriosMetodoCongruencialLineal(self,cantidad, semilla, a, m):
+        # Inicializo datos
+        numeros_generados = []
 
+        # Genero lista de numeros aleatorios
+        for i in range(0, cantidad):
             if i == 0:
-                X.append(round(s, 4))
+                aleatorio = round(semilla % m, 4)
             else:
-                newX = (A * X[i - 1]) % M
-                newXRounded = round(newX, 4)
-                X.append(newXRounded)
-            #newR = X[i] / M-1
-            newR = X[i] / M
-            newRRounded = round(newR, 4)
-            R.append(newRRounded)
-            i += 1
+                aleatorio = round((a * semilla) % m, 4)
+            aleatorio_decimal = round(aleatorio / m, 4)
+            numeros_generados.append({
+                "nro_orden": i + 1,
+                "semilla": semilla,
+                "aleatorio_decimal": aleatorio_decimal
+            })
+            semilla = aleatorio
 
-        return n,X,R
-
+        return numeros_generados
 
 
     #def generarNrosAleatoriosMetodoCongruencialMixto(s=56, G=3, C=43,K=5, cantidad=100):
 
 
-    def generarNrosAleatoriosMetodoCongruencialMixto(self,s, M, A, C, cantidad):
-        #M=2^G
-        #A= 1+4.K
+    def generarNrosAleatoriosMetodoCongruencialMixto(self,cantidad, semilla, a,c, m):
 
-        n = []  # vector de numero de iteracion
-        X = []  # vector de resultados( los pseudoaleatorios)
-        R = []  # vector de residuos( los numeros random)
-        i = 0
-        while i < cantidad:
-            n.append(i)
+        # Inicializo datos
+        numeros_generados = []
 
+        # Genero lista de numeros aleatorios
+        for i in range(0, cantidad):
             if i == 0:
-                X.append(round(s, 4))
+                aleatorio = round(semilla % m, 4)
             else:
-                newX = (A * X[i - 1] + C) % M
-                newXRounded = round(newX, 4)
-                X.append(newXRounded)
+                aleatorio = round((a * semilla + c) % m, 4)
+            aleatorio_decimal = round(aleatorio / m, 4)
+            numeros_generados.append({
+                "nro_orden": i + 1,
+                "semilla": semilla,
+                "aleatorio_decimal": aleatorio_decimal
+            })
+            semilla = aleatorio
 
-            #newR = X[i] / M-1
-            newR = X[i] / M
-            newRRounded = round(newR, 4)
-            R.append(newRRounded)
-
-            i += 1
-        return n, X, R
+        return numeros_generados
 
 
     def dividirEnIntervalos(self,cantIntervalos=10, maximo=1, minimo=0):
@@ -147,7 +146,6 @@ class controlGeneradores():
         media= round(lista.mean(),4)
         varianza=round(lista.var(),4)
         return media, varianza
-
 
 #print("")
 #print ("metodo congruencial lineal")
