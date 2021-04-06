@@ -6,11 +6,13 @@ from GeneracionNroRandom.generadores import controlGeneradores
 
 
 class Generador_Numeros(QMainWindow):
+    controlador = None
+
+    numeros_aleatorios = []
+
     def __init__(self):
         super() . __init__()
 
-        controlador = None
-        numeros_aleatorios = []
         uic.loadUi("ventanaGenerarNumeros.ui",self)
         self.controlador = controlGeneradores()
 
@@ -24,8 +26,6 @@ class Generador_Numeros(QMainWindow):
 
     def accion_prueba_ChiCuadrado(self):
 
-        numeros_aleatorios= self.cargar_tabla_numeros_aleatorios()
-
         if len(self.numeros_aleatorios) == 0:
             self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
             return
@@ -34,7 +34,6 @@ class Generador_Numeros(QMainWindow):
         if cantidad_intervalos == "" or int(cantidad_intervalos) <= 0:
             self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
             return
-
 
         frecuenciaEsperada, frecuenciaReal = self.controlador.testChiCuadrado(numeros_aleatorios,cantidad_intervalos)
 
@@ -154,6 +153,7 @@ class Generador_Numeros(QMainWindow):
         self.dgv_numerosAleatorios.clearSelection()
         self.dgv_numerosAleatorios.setCurrentCell(-1, -1)
         self.dgv_numerosAleatorios.setRowCount(0)
+        self.numeros_aleatorios = []
 
     def mostrar_mensaje(self, titulo, mensaje):
         # Muestro mensaje

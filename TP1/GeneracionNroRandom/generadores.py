@@ -104,7 +104,7 @@ class controlGeneradores():
     # Devuelve un vector con las frecuencias esperadas y un vector con las frecuencias reales
 
     #def testChiCuadrado(serie,cantIntervalos):
-    def testChiCuadrado( self,numeros_aleatorios,cantIntervalos):
+    def testChiCuadrado(self,numeros_aleatorios,cantIntervalos):
         #tomando todos los random del metodo congruencial lineal en serie
 
         frecuenciaEsperada = [len(numeros_aleatorios)/ cantIntervalos] * cantIntervalos
