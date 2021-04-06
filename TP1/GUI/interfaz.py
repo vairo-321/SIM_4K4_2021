@@ -23,7 +23,28 @@ class Generador_Numeros(QMainWindow):
         self.btn_PruebaChiCuadrado.clicked.connect(self.accion_prueba_ChiCuadrado)
 
     def accion_prueba_ChiCuadrado(self):
-        return 0
+
+        numeros_aleatorios= self.cargar_tabla_numeros_aleatorios()
+
+        if len(self.numeros_aleatorios) == 0:
+            self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
+            return
+
+        cantidad_intervalos = self.txt_intervalos.text()
+        if cantidad_intervalos == "" or int(cantidad_intervalos) <= 0:
+            self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
+            return
+
+
+        frecuenciaEsperada, frecuenciaReal = self.controlador.testChiCuadrado(numeros_aleatorios,cantidad_intervalos)
+
+        intervalos, mediaDeCadaIntervalo= self.controlador.dividirEnIntervalos(cantidad_intervalos)
+
+        chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
+        self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
+                            % str(chi_cuadrado).replace(".", ","))
+
+
     def limpiar_interfaz_prueba_frecuencia(self):
         self.txt_intervalos.clear()
 

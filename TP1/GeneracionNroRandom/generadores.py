@@ -77,7 +77,9 @@ class controlGeneradores():
         return numeros_generados
 
 
-    def dividirEnIntervalos(self,cantIntervalos=10, maximo=1, minimo=0):
+    def dividirEnIntervalos(self,cantIntervalos):
+        maximo = 1
+        minimo = 0
         paso = (maximo - minimo) / cantIntervalos
         intervalos = []
         mediaDeCadaIntervalo = []
@@ -102,10 +104,10 @@ class controlGeneradores():
     # Devuelve un vector con las frecuencias esperadas y un vector con las frecuencias reales
 
     #def testChiCuadrado(serie,cantIntervalos):
-    def testChiCuadrado( self,cantIntervalos=10):
+    def testChiCuadrado( self,numeros_aleatorios,cantIntervalos):
         #tomando todos los random del metodo congruencial lineal en serie
-        serie=[0.0112, 0.1904, 0.2368, 0.0256, 0.4352, 0.3984, 0.7728, 0.1376, 0.3392, 0.7664, 0.0288, 0.4896, 0.3232, 0.4944, 0.4048, 0.8816, 0.9872, 0.7824, 0.3008, 0.1136, 0.9312, 0.8304, 0.1168, 0.9856, 0.7552, 0.8384, 0.2528, 0.2976, 0.0592, 0.0064, 0.1088, 0.8496, 0.4432, 0.5344, 0.0848, 0.4416, 0.5072, 0.6224, 0.5808, 0.8736, 0.8512, 0.4704, 0.9968, 0.9456, 0.0752, 0.2784, 0.7328, 0.4576, 0.7792, 0.2464, 0.1888, 0.2096, 0.5632, 0.5744, 0.7648, 0.0016, 0.0272, 0.4624, 0.8608, 0.6336, 0.7712, 0.1104, 0.8768, 0.9056, 0.3952, 0.7184, 0.2128, 0.6176, 0.4992, 0.4864, 0.2688, 0.5696, 0.6832, 0.6144, 0.4448, 0.5616, 0.5472, 0.3024, 0.1408, 0.3936, 0.6912, 0.7504, 0.7568, 0.8656, 0.7152, 0.1584, 0.6928, 0.7776, 0.2192, 0.7264, 0.3488, 0.9296, 0.8032, 0.6544, 0.1248, 0.1216, 0.0672, 0.1424, 0.4208, 0.1536]
-        frecuenciaEsperada = [len(serie)/ cantIntervalos] * cantIntervalos
+
+        frecuenciaEsperada = [len(numeros_aleatorios)/ cantIntervalos] * cantIntervalos
         frecuenciaReal = []
 
         intervalos, mediaDeCadaIntervalo = dividirEnIntervalos(cantIntervalos)
@@ -116,8 +118,8 @@ class controlGeneradores():
 
             item = 0
 
-            while item < len(serie):
-                if serie[item] >= i[0] and serie[item] < i[1]:
+            while item < len(numeros_aleatorios):
+                if numeros_aleatorios[item] >= i[0] and numeros_aleatorios[item] < i[1]:
                     contadorApariciones += 1
 
                 item += 1
@@ -126,6 +128,21 @@ class controlGeneradores():
 
         return frecuenciaEsperada, frecuenciaReal
     #def calculo_chi_Cuadrado(frecuenciaEsperada,frecuenciaReal):
+
+    def prueba_chicuadrado(self, frecuencias_observadas, frecuencias_esperadas):
+
+        # Inicializo datos
+        valores = [] * len(frecuencias_observadas)
+        chi_cuadrado = 0
+
+        # La funcion chisquare devuele en el primer campo el valor de chi cuadrado y en el segundo de p
+        for i in range(len(frecuencias_esperadas)):
+            aux = round(((frecuencias_observadas[i] - frecuencias_esperadas[i]) ** 2) / frecuencias_esperadas[i], 4)
+            valores.append(aux)
+        for valor in valores:
+            chi_cuadrado += round(valor, 4)
+
+        return chi_cuadrado
 
     def calculo_chi_Cuadrado(self):
         #del congruencial lineal
