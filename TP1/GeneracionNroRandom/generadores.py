@@ -23,8 +23,13 @@ class controlGeneradores():
 
     # segun video (ver minuto 10:30)
     def generarNrosAleatoriosMetodoCongruencialLineal(self,cantidad, semilla, a, m):
+        cantidad = int(cantidad)
+        semilla = round(float(semilla.replace(",", ".")), 4)
+        a = round(float(a.replace(",", ".")), 4)
+        m = round(float(m.replace(",", ".")), 4)
         # Inicializo datos
         numeros_generados = []
+        aleatorio=None
 
         # Genero lista de numeros aleatorios
         for i in range(0, cantidad):
@@ -46,8 +51,12 @@ class controlGeneradores():
     #def generarNrosAleatoriosMetodoCongruencialMixto(s=56, G=3, C=43,K=5, cantidad=100):
 
 
-    def generarNrosAleatoriosMetodoCongruencialMixto(self,cantidad, semilla, a,c, m):
-
+    def generarNrosAleatoriosMetodoCongruencialMixto(self,cantidad, semilla, a, c, m):
+        cantidad = int(cantidad)
+        semilla = round(float(semilla.replace(",", ".")), 4)
+        a = round(float(a.replace(",", ".")), 4)
+        c = round(float(c.replace(",", ".")), 4)
+        m = round(float(m.replace(",", ".")), 4)
         # Inicializo datos
         numeros_generados = []
 

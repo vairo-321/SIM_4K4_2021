@@ -62,10 +62,11 @@ class Generador_Numeros(QMainWindow):
 
         # Obtengo metodo
         id_metodo = self.cmb_MetodoAleatorio.itemData(self.cmb_MetodoAleatorio.currentIndex())
-        semilla = None
-        a = None
-        c = None
-        m = None
+        semilla = self.txt_semilla.text()
+        a = self.txt_cte_a.text()
+        c = self.txt_cte_c.text()
+        m = self.txt_cte_m.text()
+
         cantidad_numeros = self.txt_cantNumeros.text()
         if cantidad_numeros == "" or int(cantidad_numeros) <= 0:
             self.mostrar_mensaje("Error", "La cantidad de números tiene que ser mayor a cero")
@@ -77,7 +78,6 @@ class Generador_Numeros(QMainWindow):
         elif id_metodo == 1:
             self.numeros_aleatorios = self.controlador.generarNrosAleatoriosMetodoCongruencialLineal(
                 cantidad_numeros, semilla, a, m)
-
         elif id_metodo == 2:
             self.numeros_aleatorios = self.controlador.generarMetodoProvistoPorElLenguaje(cantidad_numeros)
 
