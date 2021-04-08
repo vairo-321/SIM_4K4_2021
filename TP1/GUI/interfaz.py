@@ -24,8 +24,13 @@ class Generador_Numeros(QMainWindow):
         self.btn_limpiarIntervalos.clicked.connect(self.limpiar_interfaz_prueba_frecuencia)
         self.btn_PruebaChiCuadrado.clicked.connect(self.accion_prueba_ChiCuadrado)
 
+    def filtrar(self,numeros):
+        resultado = []
+        for diccionario in numeros:
+            resultado.append(diccionario['aleatorio_decimal'])
+        return resultado
     def accion_prueba_ChiCuadrado(self):
-
+        aleatorio=self.filtrar(self.numeros_aleatorios)
         if len(self.numeros_aleatorios) == 0:
             self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
             return
@@ -35,7 +40,7 @@ class Generador_Numeros(QMainWindow):
             self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
             return
 
-        frecuenciaEsperada, frecuenciaReal = self.controlador.testChiCuadrado(self.numeros_aleatorios,cantidad_intervalos)
+        frecuenciaEsperada, frecuenciaReal = self.controlador.testChiCuadrado(aleatorio,cantidad_intervalos)
 
        # intervalos, mediaDeCadaIntervalo= self.controlador.dividirEnIntervalos(cantidad_intervalos)
 
@@ -48,7 +53,8 @@ class Generador_Numeros(QMainWindow):
         self.txt_intervalos.clear()
 
     def accion_generar_proximo_numero(self):
-       return 0
+        return 0
+
 
     def accion_seleccionar_metodo(self):
 
