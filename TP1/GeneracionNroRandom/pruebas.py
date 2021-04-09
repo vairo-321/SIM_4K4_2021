@@ -37,8 +37,6 @@ def generarNrosAleatoriosMetodoCongruencialMixto(cantidad=4, semilla=4, a=3,c=2,
 
     return numeros_generados
 
-
-
 def filtrar():
     numeros=[{'nro_orden': 1, 'semilla': 4, 'aleatorio_decimal': 0.5714}, {'nro_orden': 2, 'semilla': 4, 'aleatorio_decimal': 0.0}, {'nro_orden': 3, 'semilla': 0, 'aleatorio_decimal': 0.2857}, {'nro_orden': 4, 'semilla': 2, 'aleatorio_decimal': 0.1429}]
     resultado=[]

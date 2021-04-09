@@ -1,8 +1,10 @@
 from random import uniform
 import numpy as np
 
-class controlGeneradores():
 
+
+class controlGeneradores():
+    numeros=[]
     def generarMetodoProvistoPorElLenguaje(self,cantidad):
         # Convierto tipos de datos
         cantidad = int(cantidad)
@@ -104,13 +106,14 @@ class controlGeneradores():
     # Devuelve un vector con las frecuencias esperadas y un vector con las frecuencias reales
 
     #def testChiCuadrado(serie,cantIntervalos):
-    def testChiCuadrado(self,numeros_aleatorios,cantIntervalos):
-        #tomando todos los random del metodo congruencial lineal en serie
 
-        frecuenciaEsperada = [len(numeros_aleatorios)/ cantIntervalos] * cantIntervalos
+    def testChiCuadrado(self,serie,cantIntervalos):
+
+        #tomando todos los random del metodo congruencial lineal en serie
+        frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
         frecuenciaReal = []
 
-        intervalos, mediaDeCadaIntervalo = dividirEnIntervalos(cantIntervalos)
+        intervalos, mediaDeCadaIntervalo = self.dividirEnIntervalos(cantIntervalos)
         # print(intervalos)
 
         for i in intervalos:
@@ -118,8 +121,8 @@ class controlGeneradores():
 
             item = 0
 
-            while item < len(numeros_aleatorios):
-                if numeros_aleatorios[item] >= i[0] and numeros_aleatorios[item] < i[1]:
+            while item < len(serie):
+                if serie[item] >= i[0] and serie[item] < i[1]:
                     contadorApariciones += 1
 
                 item += 1
@@ -127,7 +130,6 @@ class controlGeneradores():
             frecuenciaReal.append(contadorApariciones)
 
         return frecuenciaEsperada, frecuenciaReal
-    #def calculo_chi_Cuadrado(frecuenciaEsperada,frecuenciaReal):
 
     def prueba_chicuadrado(self, frecuencias_observadas, frecuencias_esperadas):
 
