@@ -5,6 +5,7 @@ import numpy as np
 
 class controlGeneradores():
     numeros=[]
+    serie=[]
     def generarMetodoProvistoPorElLenguaje(self,cantidad):
         # Convierto tipos de datos
         cantidad = int(cantidad)
@@ -108,9 +109,11 @@ class controlGeneradores():
     #def testChiCuadrado(serie,cantIntervalos):
 
     def testChiCuadrado(self,serie,cantIntervalos):
-
+        serie1=len(serie)
+        numero=serie
+        cantIntervalos=int(cantIntervalos)
         #tomando todos los random del metodo congruencial lineal en serie
-        frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
+        frecuenciaEsperada = [serie1 / cantIntervalos] * cantIntervalos
         frecuenciaReal = []
 
         intervalos, mediaDeCadaIntervalo = self.dividirEnIntervalos(cantIntervalos)
@@ -121,8 +124,8 @@ class controlGeneradores():
 
             item = 0
 
-            while item < len(serie):
-                if serie[item] >= i[0] and serie[item] < i[1]:
+            while item < serie1:
+                if numero[item] >= i[0] and numero[item] < i[1]:
                     contadorApariciones += 1
 
                 item += 1

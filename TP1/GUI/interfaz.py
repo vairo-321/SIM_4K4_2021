@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
-from GeneracionNroRandom.generadores import controlGeneradores
+from GUI.GeneracionNroRandom.generadores import controlGeneradores
 from random import *
 
 
@@ -52,7 +52,7 @@ class Generador_Numeros(QMainWindow):
         chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
         self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
                             % str(chi_cuadrado).replace(".", ","))
-
+    
 
     def limpiar_interfaz_prueba_frecuencia(self):
         self.txt_intervalos.clear()
@@ -94,10 +94,40 @@ class Generador_Numeros(QMainWindow):
 
         # Obtengo metodo
         id_metodo = self.cmb_MetodoAleatorio.itemData(self.cmb_MetodoAleatorio.currentIndex())
-        semilla = self.txt_semilla.text()
-        a = self.txt_cte_a.text()
-        c = self.txt_cte_c.text()
-        m = self.txt_cte_m.text()
+        semilla = None
+        a = None
+        c = None
+        m = None
+
+        if id_metodo == 0 or id_metodo == 1:
+            semilla = self.txt_semilla.text()
+            if semilla == "" or float(semilla.replace(",", ".")) < 0:
+                self.mostrar_mensaje("Error", "La semilla tiene que ser mayor o igual a cero")
+                return
+            a = self.txt_cte_a.text()
+            if a == "" or float(a.replace(",", ".")) <= 0:
+                self.mostrar_mensaje("Error", "La constante \"a\" tiene que ser mayor a cero")
+                return
+        if id_metodo == 0:
+            c = self.txt_cte_c.text()
+            if c == "" or float(c.replace(",", ".")) <= 0:
+                self.mostrar_mensaje("Error", "La constante \"c\" tiene que ser mayor a cero")
+                return
+        if id_metodo == 0 or id_metodo == 1:
+            m = self.txt_cte_m.text()
+            if m == "" or float(m.replace(",", ".")) <= 0:
+                self.mostrar_mensaje("Error", "La constante \"m\" tiene que ser mayor a cero")
+                return
+            if float(semilla.replace(",", ".")) >= float(m.replace(",", ".")):
+                self.mostrar_mensaje("Error", "La semilla tiene que ser menor a la constante \"m\"")
+                return
+            if float(a.replace(",", ".")) >= float(m.replace(",", ".")):
+                self.mostrar_mensaje("Error", "La constante \"a\" tiene que ser menor a la constante \"m\"")
+                return
+            if id_metodo == 0:
+                if float(c.replace(",", ".")) >= float(m.replace(",", ".")):
+                    self.mostrar_mensaje("Error", "La constante \"c\" tiene que ser menor a la constante \"m\"")
+                    return
 
         cantidad_numeros = self.txt_cantNumeros.text()
         if cantidad_numeros == "" or int(cantidad_numeros) <= 0:
