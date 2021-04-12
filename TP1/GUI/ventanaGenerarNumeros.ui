@@ -123,7 +123,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>semilla</string>
+     <string>semilla:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -131,7 +131,7 @@
      <rect>
       <x>140</x>
       <y>60</y>
-      <width>61</width>
+      <width>71</width>
       <height>16</height>
      </rect>
     </property>
@@ -204,7 +204,7 @@
    <widget class="QPushButton" name="btn_PruebaChiCuadrado">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>560</x>
       <y>240</y>
       <width>121</width>
       <height>23</height>
@@ -217,7 +217,7 @@
    <widget class="QPushButton" name="btn_limpiarIntervalos">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>450</x>
       <y>240</y>
       <width>75</width>
       <height>23</height>

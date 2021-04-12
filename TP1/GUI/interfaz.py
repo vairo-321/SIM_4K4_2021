@@ -13,6 +13,8 @@ class Generador_Numeros(QMainWindow):
     c=None
     m=None
     aleatorio=[]
+    frecuenciaEsperada=[]
+    frecuenciaReal=[]
 
     def __init__(self):
         super() . __init__()
@@ -45,14 +47,12 @@ class Generador_Numeros(QMainWindow):
             self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
             return
 
-        frecuenciaEsperada, frecuenciaReal = self.controlador.testChiCuadrado(self.aleatorio, cantidad_intervalos)
-
-       # intervalos, mediaDeCadaIntervalo= self.controlador.dividirEnIntervalos(cantidad_intervalos)
+        frecuenciaEsperada, frecuenciaReal,mediaDeCadaIntervalo = self.controlador.testChiCuadrado(self.aleatorio, cantidad_intervalos)
 
         chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
         self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
                             % str(chi_cuadrado).replace(".", ","))
-    
+        self.controlador.generar_grafico(mediaDeCadaIntervalo,frecuenciaEsperada,frecuenciaReal)
 
     def limpiar_interfaz_prueba_frecuencia(self):
         self.txt_intervalos.clear()
