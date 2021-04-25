@@ -41,6 +41,7 @@ class Generador_Numeros(QMainWindow):
 
         self.controlador.generarGraficosDeDistribucionDeProbabilidad(id_metodo,self.numeros_aleatorios,minimo,maximo,
                                                                      media_Exp,media_Norm,desviac_Norm,landa_Cuason)
+        
     def filtrar(self, numeros):
         resultado = []
         for diccionario in numeros:
