@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>786</width>
+    <height>674</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="dgv_VariablesAleatorias">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>251</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>500</y>
+      <width>237</width>
+      <height>135</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_18">
+       <property name="text">
+        <string>72380 - ACEVEDO, HERNAN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_19">
+       <property name="text">
+        <string>67636 - BALMACEDA UEMA, FLORENCIA AYLEN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_17">
+       <property name="text">
+        <string>45180 - BLANCO, LEONARDO</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>78716 - DIAZ, ESTEBAN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>51085 - MARTIN, DENIS ALEJANDRO</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>81631 - ROMERO, EMILIANO</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label_20">
+       <property name="text">
+        <string>INTEGRANTES:LEGAJO - APELLIDO,NOMBRE</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>776</width>
+      <height>148</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0" colspan="5">
+      <widget class="QLabel" name="label_21">
+       <property name="text">
+        <string>Seleccione una distribucion:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5" colspan="8">
+      <widget class="QComboBox" name="cmbDistribucion"/>
+     </item>
+     <item row="1" column="0" colspan="6">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Ingrese cantidad de números a generar:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6" colspan="3">
+      <widget class="QLineEdit" name="txt_cantNumeros"/>
+     </item>
+     <item row="2" column="0" rowspan="2" colspan="3">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Datos para uniforme</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4" rowspan="2" colspan="4">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Datos para exponencial</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="8" rowspan="2" colspan="4">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Datos para Normal</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="12" rowspan="2" colspan="2">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Datos para Cuasson</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" rowspan="3" colspan="2">
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="7" rowspan="3">
+      <widget class="Line" name="line_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="11" rowspan="3">
+      <widget class="Line" name="line_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>A:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="txt_A"/>
+     </item>
+     <item row="4" column="4">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>mu:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="5" colspan="2">
+      <widget class="QLineEdit" name="txt_mediaExp">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="9">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>mu:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="10">
+      <widget class="QLineEdit" name="txt_mediaNormal"/>
+     </item>
+     <item row="4" column="12">
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>lambda:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="13">
+      <widget class="QLineEdit" name="txt_landaCuason"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>B:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="txt_B"/>
+     </item>
+     <item row="5" column="4">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>lambda:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="5" colspan="2">
+      <widget class="QLineEdit" name="txt_lamdaExp">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="10">
+      <widget class="QLineEdit" name="txt_desvNorm"/>
+     </item>
+     <item row="6" column="3" colspan="3">
+      <widget class="QPushButton" name="btn_limpiar">
+       <property name="text">
+        <string>Limpiar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="9">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>sigma:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0" colspan="2">
+      <widget class="QPushButton" name="btn_generar">
+       <property name="text">
+        <string>Generar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>230</y>
+      <width>356</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Intervalos:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="txt_intervalos"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="btn_limpiarIntervalos">
+       <property name="text">
+        <string>Limpiar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="2">
+      <widget class="QPushButton" name="btn_PruebaChiCuadrado">
+       <property name="text">
+        <string>Prueba Chi Cuadrado</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="btn_grafica">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Grafica</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>786</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

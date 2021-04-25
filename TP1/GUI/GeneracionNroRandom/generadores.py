@@ -25,7 +25,7 @@ class controlGeneradores():
         return numeros_generados
 
 
-    # segun video (ver minuto 10:30)
+
     def generarNrosAleatoriosMetodoCongruencialLineal(self,cantidad, semilla, a, m):
         cantidad = int(cantidad)
         semilla = round(float(semilla.replace(",", ".")), 4)
@@ -53,7 +53,6 @@ class controlGeneradores():
 
 
     #def generarNrosAleatoriosMetodoCongruencialMixto(s=56, G=3, C=43,K=5, cantidad=100):
-
 
     def generarNrosAleatoriosMetodoCongruencialMixto(self,cantidad, semilla, a, c, m):
         cantidad = int(cantidad)
@@ -137,16 +136,17 @@ class controlGeneradores():
 
     def prueba_chicuadrado(self, frecuencias_observadas, frecuencias_esperadas):
 
-        # Inicializo datos
-        valores = [] * len(frecuencias_observadas)
-        chi_cuadrado = 0
+        diferencia1 = np.subtract(frecuencias_observadas, frecuencias_esperadas)
+        # me devuelve FO-FE
 
-        # La funcion chisquare devuele en el primer campo el valor de chi cuadrado y en el segundo de p
-        for i in range(len(frecuencias_esperadas)):
-            aux = round(((frecuencias_observadas[i] - frecuencias_esperadas[i]) ** 2) / frecuencias_esperadas[i], 4)
-            valores.append(aux)
-        for valor in valores:
-            chi_cuadrado += round(valor, 4)
+        diferencia2 = np.power(diferencia1, 2)
+        # me devuelve (FO-FE)^2
+
+        diferencia3 = np.divide(diferencia2, frecuencias_esperadas)
+        # me devuelve (FO-FE)^2/FE
+
+        chi_cuadrado = round(np.sum(diferencia3),4)
+        # me devuelve el total de sum (FO-FE)^2/FE
 
         return chi_cuadrado
 
@@ -164,3 +164,43 @@ class controlGeneradores():
         ax.set_xticklabels(mediaDeCadaIntervalo)
         ax.legend()
         plt.show()
+
+
+    def agregarUnNumeroMCL(self,cantidad, semilla, a, m,i):
+        cantidad = int(cantidad)
+        numero = []
+        semilla = float(semilla)
+        a = float(a)
+        m = float(m)
+        semilla = semilla * m
+        semilla = int(semilla)
+        i = int(i)
+        for n in range(0, cantidad):
+            aleatorio = round((a * semilla ) % m, 4)
+            random = round(aleatorio / m, 4)
+            numero.append({
+                "nro_orden": n + 1 + i,
+                "semilla": semilla,
+                "aleatorio_decimal": random})
+            semilla = random
+        return numero
+
+    def agregarUnNumeroMCM(self,cantidad,semilla, a, c, m,i):
+        cantidad = int(cantidad)
+        numero=[]
+        semilla = float(semilla)
+        a = float(a)
+        m = float(m)
+        c= float(c)
+        semilla=semilla*m
+        semilla=int(semilla)
+        i = int(i)
+        for n in range(0, cantidad):
+            aleatorio = round((a * semilla + c) % m, 4)
+            random = round(aleatorio / m, 4)
+            numero.append({
+            "nro_orden": n + 1 + i,
+            "semilla": semilla,
+            "aleatorio_decimal": random})
+            semilla = random
+        return numero

@@ -3,18 +3,18 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
 from GUI.GeneracionNroRandom.generadores import controlGeneradores
 from random import *
-
+import numpy as np
 
 class Generador_Numeros(QMainWindow):
     controlador = None
     numeros_aleatorios = []
-    semilla=None
     a=None
-    c=None
     m=None
+    c=None
+    i=None
     aleatorio=[]
-    frecuenciaEsperada=[]
-    frecuenciaReal=[]
+    numeroGenerado=[]
+    numeroOrden=[]
 
     def __init__(self):
         super() . __init__()
@@ -29,37 +29,6 @@ class Generador_Numeros(QMainWindow):
         self.btn_proxNumero.clicked.connect(self.accion_generar_proximo_numero)
         self.btn_limpiarIntervalos.clicked.connect(self.limpiar_interfaz_prueba_frecuencia)
         self.btn_PruebaChiCuadrado.clicked.connect(self.accion_prueba_ChiCuadrado)
-
-    def filtrar(self, numeros):
-        resultado = []
-        for diccionario in numeros:
-            resultado.append(diccionario['aleatorio_decimal'])
-        return resultado
-
-    def accion_prueba_ChiCuadrado(self):
-        self.aleatorio=self.filtrar(self.numeros_aleatorios)
-        if len(self.numeros_aleatorios) == 0:
-            self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
-            return
-
-        cantidad_intervalos = self.txt_intervalos.text()
-        if cantidad_intervalos == "" or int(cantidad_intervalos) <= 0:
-            self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
-            return
-
-        frecuenciaEsperada, frecuenciaReal,mediaDeCadaIntervalo = self.controlador.testChiCuadrado(self.aleatorio, cantidad_intervalos)
-
-        chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
-        self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
-                            % str(chi_cuadrado).replace(".", ","))
-        self.controlador.generar_grafico(mediaDeCadaIntervalo,frecuenciaEsperada,frecuenciaReal)
-
-    def limpiar_interfaz_prueba_frecuencia(self):
-        self.txt_intervalos.clear()
-
-
-    def accion_generar_proximo_numero(self):
-        return 0
 
 
     def accion_seleccionar_metodo(self):
@@ -86,9 +55,6 @@ class Generador_Numeros(QMainWindow):
             self.txt_cte_c.setEnabled(False)
             self.txt_cte_m.clear()
             self.txt_cte_m.setEnabled(False)
-
-    def validar_txt(self):
-        return 0
 
     def accion_generar_numeros(self):
 
@@ -146,6 +112,42 @@ class Generador_Numeros(QMainWindow):
         # Cargo tabla
         self.cargar_tabla_numeros_aleatorios()
 
+    def filtrar(self, numeros):
+        resultado = []
+        for diccionario in numeros:
+            resultado.append(diccionario['aleatorio_decimal'])
+        return resultado
+
+    def filtrarNroOrden(self, numeros):
+        resultado = []
+        for diccionario in numeros:
+            resultado.append(diccionario['nro_orden'])
+        return resultado
+
+    def accion_generar_proximo_numero(self):
+        id_metodo = self.cmb_MetodoAleatorio.itemData(self.cmb_MetodoAleatorio.currentIndex())
+
+        self.aleatorio = self.filtrar(self.numeros_aleatorios)
+        self.numeroOrden=self.filtrarNroOrden(self.numeros_aleatorios)
+
+        i=self.numeroOrden[-1]
+        semilla=self.aleatorio[-1]
+
+        a = self.txt_cte_a.text()
+        c = self.txt_cte_c.text()
+        m = self.txt_cte_m.text()
+        cantidad=1
+
+        if id_metodo == 0:
+            self.numeroGenerado = self.controlador.agregarUnNumeroMCM(cantidad,semilla, a, c, m, i)
+
+        elif id_metodo == 1:
+            self.numeroGenerado= self.controlador.agregarUnNumeroMCL(cantidad,semilla, a, m,i)
+
+        self.numeros_aleatorios=np.append(self.numeros_aleatorios, self.numeroGenerado)
+
+        self.cargar_tabla_numeros_aleatorios()
+
     def cargar_tabla_numeros_aleatorios(self):
         self.dgv_numerosAleatorios.setRowCount(len(self.numeros_aleatorios))
         index = 0
@@ -167,6 +169,25 @@ class Generador_Numeros(QMainWindow):
             self.dgv_numerosAleatorios.setItem(index, 2, QTableWidgetItem(aleatorio_decimal))
             index += 1
 
+    def accion_prueba_ChiCuadrado(self):
+        self.numeros_aleatorios=self.filtrar(self.numeros_aleatorios)
+        if len(self.numeros_aleatorios) == 0:
+            self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
+            return
+
+        cantidad_intervalos = self.txt_intervalos.text()
+        if cantidad_intervalos == "" or int(cantidad_intervalos) <= 0:
+            self.mostrar_mensaje("Error", "La cantidad de intervalos tiene que ser mayor a cero")
+            return
+
+        frecuenciaEsperada, frecuenciaReal,mediaDeCadaIntervalo = self.controlador.testChiCuadrado(self.numeros_aleatorios, cantidad_intervalos)
+
+        chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
+        self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
+                            % str(chi_cuadrado).replace(".", ","))
+
+
+        self.controlador.generar_grafico(mediaDeCadaIntervalo,frecuenciaEsperada,frecuenciaReal)
 
 
     def preparar_interfaz(self):
@@ -179,6 +200,9 @@ class Generador_Numeros(QMainWindow):
        # Preparo tabla de numeros generados
         self.dgv_numerosAleatorios.setColumnCount(3)
         self.dgv_numerosAleatorios.setHorizontalHeaderLabels(["N° de orden", "Semilla", "Número aleatorio"])
+
+    def limpiar_interfaz_prueba_frecuencia(self):
+        self.txt_intervalos.clear()
 
     def limpiar_interfaz_generar_numeros(self):
         # Limpio txts
