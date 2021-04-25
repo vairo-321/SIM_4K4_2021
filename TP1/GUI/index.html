@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>TP1 | Sim 4K4</title>
+</head>
+<body>
+<div class="grid-container">
+
+    <button id="ws_test">ws test</button>
+
+    <div class="header">
+        <h1 id="app_name">SimApp</h1>
+    </div>
+    <div class="chart">
+        <table id="tabla">
+            <tr>
+                <th>N</th>
+                <th>Xo</th>
+                <th>número</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="options">
+        <select id="method">
+            <option value="mixto">Método congruencial mixto</option>
+            <option value="multiplicativo">Método congruencial multiplicativo</option>
+            <option value="lenguaje">Método provisto por el lenguaje(python3)</option>
+        </select>
+
+        <form id="constantes">
+            <div class="field">Xo: <input placeholder="Xo"></div>
+            <div class="field">a: <input placeholder="a"></div>
+            <div class="field">m: <input placeholder="m"></div>
+            <div class="field">c: <input placeholder="c"></div>
+            <div class="field">largo de la serie: <input placeholder="N"></div>
+            <div class="field">intervalos: <input placeholder="intervalos"></div>
+        </form>
+
+        <div id="botonera">
+            <button class="btn">Generar Serie</button>
+            <button class="btn">Generar paso a paso</button>
+            <button class="btn">Limpiar</button>
+            <button class="btn" id="prueba">Prueba Chi-Cuadrado</button>
+        </div>
+
+    </div>
+    <div class="display"></div>
+
+    <!--
+    <div class="grid-parameters">
+        <select id="method">
+            <option value="mixto">Método congruencial mixto</option>
+            <option value="multiplicativo">Método congruencial multiplicativo</option>
+            <option value="lenguaje">Método provisto por el lenguaje(python3)</option>
+        </select>
+    </div>
+
+    <div class="grid-table">
+    -->
+
+</div>
+</body>
+</html>

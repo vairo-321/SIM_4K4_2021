@@ -1,0 +1,175 @@
+/*
+
+*/
+
+body {
+    margin: 0px; padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.grid-container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 20% 30% 50%;
+    grid-template-rows: 10% 90%;
+
+}
+
+.header {
+    position: relative;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    background-color: #cc99ff;
+    padding: none;
+}
+.options {
+    position: relative;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: none;
+    padding: none;
+}
+.chart {
+    position: relative;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: white;
+    padding: none;
+}
+.display {
+    position: relative;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    background-color: white;
+    padding: none;
+}
+
+#app_name {
+    position: relative;
+    left: 2%;
+    bottom: 15%;
+    font-size: 5vh;
+    font-style: bold;
+    color: white;
+}
+
+#method {
+    position: relative;
+    float: left;
+
+    font-size: 80%;
+
+    width: 90%;
+    height: auto;
+    padding: 1%;
+
+    top: 5%;
+    left: 5%;
+}
+
+#constantes {
+    display: inline-block;
+    position: relative;
+    float: left;
+
+    left: 5%;
+    top: 10%;
+
+    width: 90%;
+    height: auto;
+
+    background-color: none;
+
+}
+
+.field {
+    display: inline-block;
+
+    position: relative;
+    float: right;
+    margin: 1%;
+
+}
+
+#tabla {
+    display: inline-block;
+    position: relative;
+    float: left;
+    left: 5%;
+    top: 5%;
+
+    width: 90%;
+    height: 90%;
+    overflow-y: scroll;
+
+    padding-left: 2%;
+    text-align: center;
+
+    background-color: none;
+
+
+
+}
+
+th {
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+
+#tabla tr:nth-child(even) {
+    background-color: #ddffcc;
+}
+
+#botonera {
+    display: inline-block;
+    position: absolute;
+
+    float: left;
+
+    width: 90%;
+    height: 30%;
+
+    top: 55%;
+    left: 5%;
+
+    padding: 5px;
+
+    text-align: center;
+
+    background-color: none;
+}
+
+.btn {
+    background-color: white;
+    border: 1px solid #b366ff;
+    color: #b366ff;
+    border-radius: 6px;
+}
+.btn:hover {
+    background-color: #b366ff;
+    border: 1px solid white;
+    color: white;
+}
+
+#prueba {
+    display: inline-block;
+
+    width: 60%;
+    height: auto;
+
+    margin-top: 2%;
+
+
+    text-align: center;
+
+    background-color: white;
+    border: 1px solid #009933;
+    color: #009933;
+}
+#prueba:hover {
+    background-color: #009933;
+    border: 1px solid #009933;
+    color: white;
+}
