@@ -89,15 +89,15 @@ class controlGeneradores():
         i = 0
         while i < cantIntervalos:
             if i == 0:
-                intervalos.append([round(minimo, 4), round(minimo + paso, 4)])
+                intervalos.append([round(minimo, 2), round(minimo + paso, 2)])
             else:
-                minimoAnterior = round(intervalos[i - 1][1], 4)
-                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 4)])
+                minimoAnterior = round(intervalos[i - 1][1], 2)
+                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 2)])
 
             i += 1
 
         for i in intervalos:
-            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 4))
+            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 2))
 
         return intervalos, mediaDeCadaIntervalo
 

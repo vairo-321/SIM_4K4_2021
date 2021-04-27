@@ -8,8 +8,8 @@ class controladorDistribuciones():
 
     def generarDistribucionUniforme(self,cantidad,A,B):
         numeros_generados = []
-        A=float(A)
-        B=float(B)
+        A=float(A.replace(",", "."))
+        B=float(B.replace(",", "."))
         cantidad=int(cantidad)
         # Genero lista de numeros aleatorios
         for i in range(0, cantidad):
@@ -22,7 +22,7 @@ class controladorDistribuciones():
         return numeros_generados
     def generarDistribucionExponencial(self,cantidad,media):
         numeros_generados = []
-        media = float(media)
+        media = float(media.replace(",", "."))
         #landa=float(landa)
         cantidad = int(cantidad)
         # Genero lista de numeros aleatorios
@@ -37,8 +37,8 @@ class controladorDistribuciones():
         return numeros_generados
     def generarDistribucionNormal(self,cantidad,media,desviacion):
         numeros_generados = []
-        media = float(media)
-        desviacion=float(desviacion)
+        media = float(media.replace(",", "."))
+        desviacion=float(desviacion.replace(",", "."))
         cantidad = int(cantidad)
         # Genero lista de numeros aleatorios
         for i in range(0, cantidad):
@@ -54,7 +54,7 @@ class controladorDistribuciones():
 
     def generarDistribucionCuasson(self,cantidad,media):
         numeros_generados = []
-        media=int(media)
+        media=float(media.replace(",", "."))
         cantidad = int(cantidad)
         # Genero lista de numeros aleatorios
         for i in range(0, cantidad):
@@ -80,15 +80,15 @@ class controladorDistribuciones():
         i = 0
         while i < cantIntervalos:
             if i == 0:
-                intervalos.append([round(minimo, 4), round(minimo + paso, 4)])
+                intervalos.append([round(minimo, 2), round(minimo + paso, 2)])
             else:
-                minimoAnterior = round(intervalos[i - 1][1], 4)
-                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 4)])
+                minimoAnterior = round(intervalos[i - 1][1], 2)
+                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 2)])
 
             i += 1
 
         for i in intervalos:
-            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 4))
+            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 2))
 
         return intervalos, mediaDeCadaIntervalo
 

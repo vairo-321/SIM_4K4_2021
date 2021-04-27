@@ -44,12 +44,6 @@ class Generador_Numeros(QMainWindow):
         minimo = min(self.numeros_aleatorios)
         maximo = max(self.numeros_aleatorios)
 
-        #media_Exp = self.txt_mediaExp.text()
-        #media_Norm = self.txt_mediaNormal.text()
-        #desviac_Norm = self.txt_desvNorm.text()
-        #landa_Cuason = self.txt_landaCuason.text()
-
-
         if len(self.numeros_aleatorios) == 0:
             self.mostrar_mensaje("Error", "Primero debe generar los números aleatorios")
             return
@@ -134,6 +128,8 @@ class Generador_Numeros(QMainWindow):
         desviac_Norm = None
         landa_Cuason = None
         media_Norm=None
+
+
         if id_metodo ==0:
             A = self.txt_A.text()
             if A == "":
@@ -145,15 +141,21 @@ class Generador_Numeros(QMainWindow):
                 return
         elif id_metodo == 1:
             media_Exp = self.txt_mediaExp.text()
+
             if media_Exp == "":
                 self.mostrar_mensaje("Error", "La constante \"mu\" no puede ser vacía")
                 return
+            if media_Exp == "" or float(media_Exp.replace(",", ".")) < 0:
+                self.mostrar_mensaje("Error", "La constante \"sigma\" tiene que ser mayor o igual a cero")
+                return
         elif id_metodo == 2:
             media_Norm = self.txt_mediaNormal.text()
+
             if media_Norm == "":
                 self.mostrar_mensaje("Error", "La constante \"mu\" no puede ser vacía")
                 return
             desviac_Norm = self.txt_desvNorm.text()
+
             if desviac_Norm == "" or float(desviac_Norm.replace(",", ".")) < 0:
                 self.mostrar_mensaje("Error", "La constante \"sigma\" tiene que ser mayor o igual a cero")
                 return
@@ -217,7 +219,7 @@ class Generador_Numeros(QMainWindow):
 
         # Preparo tabla de numeros generados
         self.dgv_VariablesAleatorias.setColumnCount(2)
-        self.dgv_VariablesAleatorias.setHorizontalHeaderLabels(["N° de orden","Número aleatorio"])
+        self.dgv_VariablesAleatorias.setHorizontalHeaderLabels(["N° de orden","Variable aleatoria"])
     def limpiar_interfaz_generar_numeros(self):
         # Limpio txts
         self.txt_A.clear()
