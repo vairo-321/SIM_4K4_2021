@@ -43,7 +43,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Hernán/4to UTN/SIM/SIM 2020/SIM4K4-master/tp3" />
   </component>
   <component name="RunManager" selected="Python.interfaz">
     <configuration name="interfaz" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -122,42 +122,42 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="274" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1619270325482" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1619359082054">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1619512764094">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1619359082054" />
-    <state width="1345" height="178" key="GridCell.Tab.0.bottom" timestamp="1619368564768">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1619512764094" />
+    <state width="1345" height="112" key="GridCell.Tab.0.bottom" timestamp="1619514519052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619368564768" />
-    <state width="1345" height="178" key="GridCell.Tab.0.center" timestamp="1619368564768">
+    <state width="1345" height="112" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619514519052" />
+    <state width="1345" height="112" key="GridCell.Tab.0.center" timestamp="1619514519052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1619368564768" />
-    <state width="1345" height="178" key="GridCell.Tab.0.left" timestamp="1619368564768">
+    <state width="1345" height="112" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1619514519052" />
+    <state width="1345" height="112" key="GridCell.Tab.0.left" timestamp="1619514519052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1619368564768" />
-    <state width="1345" height="178" key="GridCell.Tab.0.right" timestamp="1619368564768">
+    <state width="1345" height="112" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1619514519052" />
+    <state width="1345" height="112" key="GridCell.Tab.0.right" timestamp="1619514519052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1619368564768" />
-    <state width="1345" height="218" key="GridCell.Tab.1.bottom" timestamp="1619361363071">
+    <state width="1345" height="112" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1619514519052" />
+    <state width="1345" height="50" key="GridCell.Tab.1.bottom" timestamp="1619514310184">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="218" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619361363071" />
-    <state width="1345" height="218" key="GridCell.Tab.1.center" timestamp="1619361363071">
+    <state width="1345" height="50" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1619514310184" />
+    <state width="1345" height="50" key="GridCell.Tab.1.center" timestamp="1619514310184">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="218" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1619361363071" />
-    <state width="1345" height="218" key="GridCell.Tab.1.left" timestamp="1619361363071">
+    <state width="1345" height="50" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1619514310184" />
+    <state width="1345" height="50" key="GridCell.Tab.1.left" timestamp="1619514310184">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="218" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1619361363071" />
-    <state width="1345" height="218" key="GridCell.Tab.1.right" timestamp="1619361363071">
+    <state width="1345" height="50" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1619514310184" />
+    <state width="1345" height="50" key="GridCell.Tab.1.right" timestamp="1619514310184">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="218" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1619361363071" />
+    <state width="1345" height="50" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1619514310184" />
     <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1619286334981">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -165,18 +165,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GUI/GeneracionVariablesAleatorias/generadores.py</url>
-          <line>189</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GUI/GeneracionVariablesAleatorias/generadores.py</url>
-          <line>251</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

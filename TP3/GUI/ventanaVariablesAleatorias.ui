@@ -27,7 +27,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>550</x>
@@ -88,7 +88,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -221,20 +221,6 @@
      <item row="5" column="1">
       <widget class="QLineEdit" name="txt_B"/>
      </item>
-     <item row="5" column="4">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>lambda:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="5" colspan="2">
-      <widget class="QLineEdit" name="txt_lamdaExp">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
      <item row="5" column="10">
       <widget class="QLineEdit" name="txt_desvNorm"/>
      </item>
@@ -261,7 +247,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -292,16 +278,6 @@
       <widget class="QPushButton" name="btn_PruebaChiCuadrado">
        <property name="text">
         <string>Prueba Chi Cuadrado</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QPushButton" name="btn_grafica">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Grafica</string>
        </property>
       </widget>
      </item>

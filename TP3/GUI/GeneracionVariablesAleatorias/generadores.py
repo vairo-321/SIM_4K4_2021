@@ -92,30 +92,36 @@ class controladorDistribuciones():
 
         return intervalos, mediaDeCadaIntervalo
 
-    # metodo que realiza el test de Chi cuadrado a una serie con una cantidad x de intervalos
-    # Para cada intervalo de frecuencia toma como mayor o igual al limite inferior y como
-    # menor a limite superior
-    # Devuelve un vector con las frecuencias esperadas y un vector con las frecuencias reales
-
-    #def testChiCuadrado(serie,cantIntervalos):
-
-    def testChiCuadrado(self,id,serie,cantIntervalos,maximo,minimo,media_Exp,
-                        media_Norm,desviac_Norm,landa_Cuason):
+    def testChiCuadrado(self,id,serie,cantIntervalos,maximo,minimo,media_Exp=None,
+                        media_Norm=None,desviac_Norm=None,landa_Cuason=None):
         maximo=int(maximo)
         minimo=int(minimo)
         id=int(id)
-        serie1 = len(serie)
-        #media_Exp=int(media_Exp)
-        #media_Norm=int(media_Norm)
-        #desviac_Norm=int(media_Norm)
 
+        if media_Exp is not None:
+            media_Exp = float(media_Exp.replace(",", "."))
+            if media_Exp == int(media_Exp):
+                media_Exp = int(media_Exp)
+        if media_Norm is not None:
+            media_Norm = float(media_Norm.replace(",", "."))
+            if media_Norm == int(media_Norm):
+                media_Norm = int(media_Norm)
+        if desviac_Norm is not None:
+            desviac_Norm = float(desviac_Norm.replace(",", "."))
+            if desviac_Norm == int(desviac_Norm):
+                desviac_Norm = int(desviac_Norm)
+        if landa_Cuason is not None:
+            landa_Cuason= float(landa_Cuason.replace(",", "."))
+            if landa_Cuason == int(landa_Cuason):
+                landa_Cuason = int(landa_Cuason)
 
         cantIntervalos = int(cantIntervalos)
 
         frecuenciaReal = []
+        frecuencias_esperadas=[]
 
         intervalos, mediaDeCadaIntervalo = self.dividirEnIntervalos(cantIntervalos,maximo,minimo)
-        # print(intervalos)
+
 
         for i in intervalos:
             contadorApariciones = 0
@@ -130,25 +136,32 @@ class controladorDistribuciones():
 
             frecuenciaReal.append(contadorApariciones)
 
-        frecuenciaEsperada=[]
-    #https://relopezbriega.github.io/blog/2016/06/29/distribuciones-de-probabilidad-con-python/
-        if id == 0:
-            frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
+        if id==0:
+            frecuencias_esperadas = [len(serie) / cantIntervalos] * cantIntervalos
+        else:
+            for i in intervalos:
+                frecuencia_esperada = 0
+                maximo=i[1]
+                minimo=i[0]
 
-        elif id == 1:
-            #frecuenciaEsperada = round((stats.expon(0,media_Exp).cdf(maximo) - stats.expon(0,media_Exp).cdf(minimo))* serie1, 2)
-           frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
+                if id==1:
+                    frecuencia_esperada = round((stats.expon(0, 1 / media_Exp).cdf(maximo) -
+                                                         stats.expon(0, 1 / media_Exp).cdf(minimo)) *
+                                                        len(serie), 2)
+                elif id==2:
+                    frecuencia_esperada = round((stats.norm(media_Norm, desviac_Norm).cdf(maximo) -
+                                                         stats.norm(media_Norm, desviac_Norm).cdf(minimo)) *
+                                                        len(serie), 2)
+                elif id==3:
+                    frecuencia_esperada = round((stats.poisson(landa_Cuason).cdf(maximo) -
+                                                         stats.poisson(landa_Cuason).cdf(minimo)) *
+                                                        len(serie), 2)
 
-        elif id == 2:
-            #frecuenciaEsperada = round((stats.norm(media_Norm, desviac_Norm).cdf(maximo) - stats.norm(media_Norm, desviac_Norm).cdf(minimo)) * serie1, 2)
-            frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
+                if frecuencia_esperada == int(frecuencia_esperada):
+                    frecuencia_esperada = int(frecuencia_esperada)
+                frecuencias_esperadas.append(frecuencia_esperada)
 
-        elif id == 3:
-            #frecuenciaEsperada = round((stats.poisson(landa_Cuason).cdf(maximo) - stats.poisson(landa_Cuason).cdf(minimo)) * serie1, 2)
-            frecuenciaEsperada = [len(serie) / cantIntervalos] * cantIntervalos
-
-
-        return frecuenciaEsperada, frecuenciaReal, mediaDeCadaIntervalo
+        return frecuencias_esperadas, frecuenciaReal, mediaDeCadaIntervalo
 
     def prueba_chicuadrado(self, frecuencias_observadas, frecuencias_esperadas):
 
@@ -183,82 +196,4 @@ class controladorDistribuciones():
 
 
 
-
-
-
-
-    def generarGraficosDeDistribucionDeProbabilidad(self,id_metodo,numeros_aleatorios,minimo,maximo,media_Exp=None,media_Norm=None,desviac_Norm=None,landa_Cuason=None):
-        id=int(id_metodo)
-        maximo=int(maximo)
-        minimo=int(minimo)
-        cantidadVariables=len(numeros_aleatorios)
-
-        if media_Exp is not None:
-            media_Exp = float(media_Exp.replace(",", "."))
-        if media_Exp == int(media_Exp):
-            media_Exp = int(media_Exp)
-
-        if media_Norm is not None:
-            media_Norm = float(media_Norm.replace(",", "."))
-            if media_Norm == int(media_Norm):
-                media_Norm = int(media_Norm)
-
-        if desviac_Norm is not None:
-            desviac_Norm = float(desviac_Norm.replace(",", "."))
-            if desviac_Norm == int(desviac_Norm):
-                desviac_Norm = int(desviac_Norm)
-
-        if landa_Cuason is not None:
-            landa_Cuason = float(landa_Cuason.replace(",", "."))
-            if landa_Cuason == int(landa_Cuason):
-                landa_Cuason = int(landa_Cuason)
-
-        if id==0:
-            uniforme = stats.uniform()
-            x = np.linspace(uniforme.ppf(minimo),
-                            uniforme.ppf(maximo), cantidadVariables)
-            fp = uniforme.pdf(x)  # Función de Probabilidad
-            fig, ax = plt.subplots()
-            ax.plot(x, fp, '--')
-            ax.vlines(x, 0, fp, colors='b', lw=5, alpha=0.5)
-            plt.title('Distribución Uniforme')
-            plt.ylabel('probabilidad')
-            plt.xlabel('valores')
-            plt.show()
-
-        elif id==1:
-            exponencial = stats.expon(media_Exp)
-            x = np.linspace(exponencial.ppf(minimo),
-                            exponencial.ppf(maximo), cantidadVariables)
-            fp = exponencial.pdf(x)  # Función de Probabilidad
-            plt.plot(x, fp)
-            plt.title('Distribución Exponencial')
-            plt.ylabel('probabilidad')
-            plt.xlabel('valores')
-            plt.show()
-
-        elif id==2:
-            mu, sigma = media_Norm,desviac_Norm  # media y desvio estandar
-            normal = stats.norm(mu,sigma)
-            x = np.linspace(normal.ppf(minimo),
-                            normal.ppf(maximo), cantidadVariables)
-            fp = normal.ppf(x)  # Función de Probabilidad
-            plt.plot(x, fp)
-            plt.title('Distribución Normal')
-            plt.ylabel('probabilidad')
-            plt.xlabel('valores')
-            plt.show()
-
-        elif id==3:
-            mu = landa_Cuason # parametro de forma
-            poisson = stats.poisson(mu)  # Distribución
-            x = np.arange(poisson.ppf(minimo),
-                          poisson.ppf(maximo),cantidadVariables)
-            fmp = poisson.pmf(x)  # Función de Masa de Probabilidad
-            plt.plot(x, fmp, '--')
-            plt.vlines(x, 0, fmp, colors='b', lw=5, alpha=0.5)
-            plt.title('Distribución Poisson')
-            plt.ylabel('probabilidad')
-            plt.xlabel('valores')
-            plt.show()
 

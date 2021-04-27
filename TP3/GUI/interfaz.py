@@ -13,6 +13,7 @@ class Generador_Numeros(QMainWindow):
     media_Exp=None
     media_Norm=None
     landa_Cuason=None
+    desviac_Norm=None
     def __init__(self):
         super() . __init__()
 
@@ -24,24 +25,8 @@ class Generador_Numeros(QMainWindow):
         self.btn_limpiar.clicked.connect(self.limpiar_interfaz_generar_numeros)
         self.btn_PruebaChiCuadrado.clicked.connect(self.accion_prueba_ChiCuadrado)
         self.btn_limpiarIntervalos.clicked.connect(self.limpiar_interfaz_prueba_frecuencia)
-        self.btn_grafica.clicked.connect(self.generar_grafico)
 
-    def generar_grafico(self):
-        id_metodo = self.cmbDistribucion.itemData(self.cmbDistribucion.currentIndex())
 
-        self.numeros_aleatorios = self.filtrar(self.numeros_aleatorios)
-
-        minimo = min(self.numeros_aleatorios)
-        maximo = max(self.numeros_aleatorios)
-
-        media_Exp = self.txt_mediaExp.text()
-        media_Norm = self.txt_mediaNormal.text()
-        desviac_Norm = self.txt_desvNorm.text()
-        landa_Cuason = self.txt_landaCuason.text()
-
-        self.controlador.generarGraficosDeDistribucionDeProbabilidad(id_metodo,self.numeros_aleatorios,minimo,maximo,
-                                                                     media_Exp,media_Norm,desviac_Norm,landa_Cuason)
-        
     def filtrar(self, numeros):
         resultado = []
         for diccionario in numeros:
@@ -54,14 +39,15 @@ class Generador_Numeros(QMainWindow):
 
     def accion_prueba_ChiCuadrado(self):
         id_metodo = self.cmbDistribucion.itemData(self.cmbDistribucion.currentIndex())
+
         self.numeros_aleatorios = self.filtrar(self.numeros_aleatorios)
         minimo = min(self.numeros_aleatorios)
         maximo = max(self.numeros_aleatorios)
 
-        media_Exp = self.txt_mediaExp.text()
-        media_Norm = self.txt_mediaNormal.text()
-        desviac_Norm = self.txt_desvNorm.text()
-        landa_Cuason = self.txt_landaCuason.text()
+        #media_Exp = self.txt_mediaExp.text()
+        #media_Norm = self.txt_mediaNormal.text()
+        #desviac_Norm = self.txt_desvNorm.text()
+        #landa_Cuason = self.txt_landaCuason.text()
 
 
         if len(self.numeros_aleatorios) == 0:
@@ -74,7 +60,7 @@ class Generador_Numeros(QMainWindow):
             return
 
         frecuenciaEsperada, frecuenciaReal, mediaDeCadaIntervalo = self.controlador.testChiCuadrado(id_metodo,
-            self.numeros_aleatorios, cantidad_intervalos,maximo,minimo,media_Exp,media_Norm,desviac_Norm,landa_Cuason)
+            self.numeros_aleatorios, cantidad_intervalos,maximo,minimo,self.media_Exp,self.media_Norm,self.desviac_Norm,self.landa_Cuason)
 
         chi_cuadrado = self.controlador.prueba_chicuadrado(frecuenciaEsperada, frecuenciaReal)
         self.mostrar_mensaje("Valor obtenido", "El valor de Chi cuadrado obtenido es %s"
@@ -83,6 +69,7 @@ class Generador_Numeros(QMainWindow):
 
     def accion_seleccionar_distribucion(self):
         id_metodo = self.cmbDistribucion.itemData(self.cmbDistribucion.currentIndex())
+
         if id_metodo == 0:
             self.txt_A.setEnabled(True)
             self.txt_B.setEnabled(True)
@@ -141,17 +128,52 @@ class Generador_Numeros(QMainWindow):
 
     def accion_generar_numeros(self):
         id_metodo = self.cmbDistribucion.itemData(self.cmbDistribucion.currentIndex())
+        A=None
+        B=None
+        media_Exp = None
+        desviac_Norm = None
+        landa_Cuason = None
+        media_Norm=None
+        if id_metodo ==0:
+            A = self.txt_A.text()
+            if A == "":
+                self.mostrar_mensaje("Error", "La constante \"A\" no puede ser vacía")
+                return
+            B= self.txt_B.text()
+            if B == "":
+                self.mostrar_mensaje("Error", "La constante \"B\" no puede ser vacía")
+                return
+        elif id_metodo == 1:
+            media_Exp = self.txt_mediaExp.text()
+            if media_Exp == "":
+                self.mostrar_mensaje("Error", "La constante \"mu\" no puede ser vacía")
+                return
+        elif id_metodo == 2:
+            media_Norm = self.txt_mediaNormal.text()
+            if media_Norm == "":
+                self.mostrar_mensaje("Error", "La constante \"mu\" no puede ser vacía")
+                return
+            desviac_Norm = self.txt_desvNorm.text()
+            if desviac_Norm == "" or float(desviac_Norm.replace(",", ".")) < 0:
+                self.mostrar_mensaje("Error", "La constante \"sigma\" tiene que ser mayor o igual a cero")
+                return
+        elif id_metodo == 3:
+            landa_Cuason = self.txt_landaCuason.text()
+            if landa_Cuason == "" or float(landa_Cuason.replace(",", ".")) <= 0:
+                self.mostrar_mensaje("Error", "La constante \"lambda\" tiene que ser mayor a cero")
+                return
+        self.A = A
+        self.B = B
+        self.media_Exp = media_Exp
+        self.media_Norm = media_Norm
+        self.desviac_Norm = desviac_Norm
+        self.landa_Cuason = landa_Cuason
+
         cantidad_numeros = self.txt_cantNumeros.text()
         if cantidad_numeros == "" or int(cantidad_numeros) <= 0:
             self.mostrar_mensaje("Error", "La cantidad de números tiene que ser mayor a cero")
             return
 
-        A=self.txt_A.text()
-        B=self.txt_B.text()
-        media_Exp=self.txt_mediaExp.text()
-        media_Norm=self.txt_mediaNormal.text()
-        desviac_Norm=self.txt_desvNorm.text()
-        landa_Cuason=self.txt_landaCuason.text()
 
         if id_metodo == 0:
             self.numeros_aleatorios = self.controlador.generarDistribucionUniforme(cantidad_numeros,A,B)
