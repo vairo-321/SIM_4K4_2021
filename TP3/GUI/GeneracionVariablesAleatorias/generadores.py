@@ -80,15 +80,15 @@ class controladorDistribuciones():
         i = 0
         while i < cantIntervalos:
             if i == 0:
-                intervalos.append([round(minimo, 2), round(minimo + paso, 2)])
+                intervalos.append([round(minimo, 4), round(minimo + paso, 4 )])
             else:
-                minimoAnterior = round(intervalos[i - 1][1], 2)
-                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 2)])
+                minimoAnterior = round(intervalos[i - 1][1], 4)
+                intervalos.append([minimoAnterior, round(minimoAnterior + paso, 4)])
 
             i += 1
 
         for i in intervalos:
-            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 2))
+            mediaDeCadaIntervalo.append(round((i[0] + i[1]) / 2, 4))
 
         return intervalos, mediaDeCadaIntervalo
 
@@ -145,17 +145,17 @@ class controladorDistribuciones():
                 minimo=i[0]
 
                 if id==1:
-                    frecuencia_esperada = round((stats.expon(0, 1 / media_Exp).cdf(maximo) -
-                                                         stats.expon(0, 1 / media_Exp).cdf(minimo)) *
-                                                        len(serie), 2)
+                    frecuencia_esperada = round((stats.expon(0, media_Exp).cdf(maximo) -
+                                                         stats.expon(0, media_Exp).cdf(minimo)) *
+                                                        len(serie), 4)
                 elif id==2:
                     frecuencia_esperada = round((stats.norm(media_Norm, desviac_Norm).cdf(maximo) -
                                                          stats.norm(media_Norm, desviac_Norm).cdf(minimo)) *
-                                                        len(serie), 2)
+                                                        len(serie), 4)
                 elif id==3:
                     frecuencia_esperada = round((stats.poisson(landa_Cuason).cdf(maximo) -
                                                          stats.poisson(landa_Cuason).cdf(minimo)) *
-                                                        len(serie), 2)
+                                                        len(serie), 4)
 
                 if frecuencia_esperada == int(frecuencia_esperada):
                     frecuencia_esperada = int(frecuencia_esperada)
@@ -193,6 +193,7 @@ class controladorDistribuciones():
         ax.set_xticklabels(mediaDeCadaIntervalo)
         ax.legend()
         plt.show()
+
 
 
 
