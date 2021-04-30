@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication,QMessageBox,QTableWidgetItem
 from PyQt5 import uic
-from GUI.GeneracionVariablesAleatorias.generadores import controladorDistribuciones
+from GeneracionVariablesAleatorias.generadores import controladorDistribuciones
 
 
 
