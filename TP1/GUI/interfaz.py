@@ -87,9 +87,9 @@ class Generador_Numeros(QMainWindow):
             if float(semilla.replace(",", ".")) >= float(m.replace(",", ".")):
                 self.mostrar_mensaje("Error", "La semilla tiene que ser menor a la constante \"m\"")
                 return
-            if float(a.replace(",", ".")) >= float(m.replace(",", ".")):
-                self.mostrar_mensaje("Error", "La constante \"a\" tiene que ser menor a la constante \"m\"")
-                return
+            #if float(a.replace(",", ".")) >= float(m.replace(",", ".")):
+            #    self.mostrar_mensaje("Error", "La constante \"a\" tiene que ser menor a la constante \"m\"")
+            #    return
             if id_metodo == 0:
                 if float(c.replace(",", ".")) >= float(m.replace(",", ".")):
                     self.mostrar_mensaje("Error", "La constante \"c\" tiene que ser menor a la constante \"m\"")
