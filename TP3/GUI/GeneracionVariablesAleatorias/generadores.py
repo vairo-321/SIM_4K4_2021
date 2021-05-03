@@ -20,6 +20,8 @@ class controladorDistribuciones():
             })
 
         return numeros_generados
+
+
     def generarDistribucionExponencial(self,cantidad,media):
         numeros_generados = []
         media = float(media.replace(",", "."))
@@ -35,6 +37,8 @@ class controladorDistribuciones():
             })
 
         return numeros_generados
+
+
     def generarDistribucionNormal(self,cantidad,media,desviacion):
         numeros_generados = []
         media = float(media.replace(",", "."))
@@ -92,6 +96,35 @@ class controladorDistribuciones():
 
         return intervalos, mediaDeCadaIntervalo
 
+    # funcion de esteban para calcular Fo
+    '''
+    def calcular_frecuencia_observada(self, cantidadIntervalos, serie ):
+        print("despues de entrar")
+        frecuenciaTotal = []
+
+        ancho = ( max(serie) - min(serie) ) / cantidadIntervalos
+
+        frecuenciaxIntervalo = 0
+        i = 0
+        limiteInferior = min(serie)
+        while i < cantidadIntervalos:
+            j = 0
+            while j < len(serie):
+                if serie[j] >= limiteInferior and serie[j] < (limiteInferior + ancho):
+                    frecuenciaxIntervalo += 1
+                j += 1
+
+            frecuenciaTotal.append(frecuenciaxIntervalo)
+
+            i += 1
+            limiteInferior = limiteInferior + ancho
+            frecuenciaxIntervalo = 0
+
+
+        return frecuenciaTotal
+    '''
+
+
     def testChiCuadrado(self,id,serie,cantIntervalos,maximo,minimo,media_Exp=None,
                         media_Norm=None,desviac_Norm=None,landa_Cuason=None):
         maximo=int(maximo)
@@ -122,7 +155,8 @@ class controladorDistribuciones():
 
         intervalos, mediaDeCadaIntervalo = self.dividirEnIntervalos(cantIntervalos,maximo,minimo)
 
-
+        '''
+        como contaba frecuencia Herni
         for i in intervalos:
             contadorApariciones = 0
 
@@ -135,9 +169,34 @@ class controladorDistribuciones():
                 item += 1
 
             frecuenciaReal.append(contadorApariciones)
+        
+        '''
+
+        #-----------------------------------------------------------------------------------------------------
+        #Nueva forma de contar frecuencia
+        ancho = ( max(serie) - min(serie) ) / cantIntervalos
+        frecuenciaxIntervalo = 0
+        i = 0
+        limiteInferior = min(serie)
+        while i < cantIntervalos:
+            j = 0
+            while j < len(serie):
+                if serie[j] >= limiteInferior and serie[j] < (limiteInferior + ancho):
+                    frecuenciaxIntervalo += 1
+                j += 1
+
+            frecuenciaReal.append(frecuenciaxIntervalo)
+
+            i += 1
+            limiteInferior = limiteInferior + ancho
+            frecuenciaxIntervalo = 0
+
+        #---------------------------------------------------------------------------------------------
 
         if id==0:
             frecuencias_esperadas = [len(serie) / cantIntervalos] * cantIntervalos
+
+
         else:
             for i in intervalos:
                 frecuencia_esperada = 0
@@ -165,6 +224,23 @@ class controladorDistribuciones():
 
     def prueba_chicuadrado(self, frecuencias_observadas, frecuencias_esperadas):
 
+        '''
+        Lo de abajo era una solucion alternativa, ya que creia que el problema estaban en las lineas antes establecidas
+
+        c_acumulado = 0
+
+        i = 0
+
+        while i < len(frecuencias_observadas):
+            c = (pow(frecuencias_esperadas[i] - frecuencias_observadas[i], 2)) / frecuencias_esperadas[i]
+
+            c_acumulado = c_acumulado + c
+
+            i += 1
+
+
+        '''
+
         diferencia1 = np.subtract(frecuencias_observadas, frecuencias_esperadas)
         # me devuelve FO-FE
 
@@ -177,7 +253,15 @@ class controladorDistribuciones():
         chi_cuadrado = round(np.sum(diferencia3),4)
         # me devuelve el total de sum (FO-FE)^2/FE
 
+        total = np.sum(frecuencias_observadas)  # <--- Esta linea fue creada para controlar que se cuenten el total de las frecuencias observadas
+
         return chi_cuadrado
+
+
+       # return c_acumulado
+
+
+
 
     def generar_histograma(self,mediaDeCadaIntervalo,frecuenciasEsperadas,frecuenciasObserbadas):
 
@@ -193,6 +277,32 @@ class controladorDistribuciones():
         ax.set_xticklabels(mediaDeCadaIntervalo)
         ax.legend()
         plt.show()
+
+
+
+    def calcular_frecuencia_observada(self, cantidadIntervalos, serie ):
+        frecuenciaTotal = []
+
+        ancho = ( max(serie) - min(serie) ) / cantidadIntervalos
+
+        frecuenciaxIntervalo = 0
+        i = 0
+        limiteInferior = min(serie)
+        while i < cantidadIntervalos:
+            j = 0
+            while j in serie:
+                if serie[j] >= limiteInferior and serie[j] < (limiteInferior + ancho):
+                    frecuenciaxIntervalo += 1
+                j += 1
+
+            frecuenciaTotal.append(frecuenciaxIntervalo)
+
+        limiteInferior = limiteInferior + ancho
+        frecuenciaxIntervalo = 0
+        i += 1
+
+
+        return frecuenciaTotal
 
 
 
