@@ -1,4 +1,6 @@
 import random
+
+
 def generarNrosAleatoriosMetodoCongruencialLineal(cantidad=4, semilla=4, a=3, m=7):
     numeros_generados = []
 
@@ -44,6 +46,7 @@ def filtrarAleatorio():
     for diccionario in numeros:
         resultado.append(diccionario['aleatorio_decimal'])
     return resultado
+
 def filtrarSemilla():
     numeros=[{'nro_orden': 4, 'semilla': 2, 'aleatorio_decimal': 0.1429}]
     resultado=[]
